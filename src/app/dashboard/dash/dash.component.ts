@@ -42,6 +42,9 @@ export class DashComponent implements OnInit, OnDestroy {
       this.caloriiPerOra = this.schedulerService.calculateCaloriesPerHour();
       this.activitati = this.schedulerService.calculateActivityCalories();
       this.caloriiPerZi = this.schedulerService.calculateCaloriesPerDay();
+      console.log(this.caloriiPerOra);
+      console.log(this.activitati);
+      console.log(this.caloriiPerZi);
     })
   }
 
