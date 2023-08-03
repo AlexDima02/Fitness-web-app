@@ -265,8 +265,6 @@ export class SchedulerService {
     }
     this.schedule.next(this.dailySchedule);
     console.log(this.dailySchedule);
-<<<<<<< Updated upstream
-=======
   }
 
   getTotals() {
@@ -279,6 +277,5 @@ export class SchedulerService {
     });
 
     return totals;
->>>>>>> Stashed changes
   }
 }
