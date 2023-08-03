@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { SchedulerService } from '../scheduler-service/scheduler.service';
 import { ActivityModel } from '../interfaces/activity-model';
 
@@ -10,18 +17,12 @@ interface Sport {
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.css',],
+  styleUrls: ['./activity.component.css'],
 })
 export class ActivityComponent implements OnInit {
+  constructor(private schedulerService: SchedulerService) {}
 
-
-  constructor(private schedulerService: SchedulerService) {
-  }
-
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
   sports: Sport[] = [
     { value: 'Alergare Usoara', viewValue: 'Alergare Usoara' },
@@ -30,8 +31,7 @@ export class ActivityComponent implements OnInit {
     { value: 'Inot', viewValue: 'Inot' },
     { value: 'Fotbal', viewValue: 'Fotbal' },
     { value: 'Handbal', viewValue: 'Handbal' },
-    { value: 'Volei', viewValue: 'Volei' }
-
+    { value: 'Volei', viewValue: 'Volei' },
   ];
 
   @Input() label!: string;
@@ -42,13 +42,55 @@ export class ActivityComponent implements OnInit {
 
   activity = new ActivityModel();
 
-  onActivityChange() {
+  onActivityChange(event: Event) {
+    this.activity.type = this.type;
+    this.activity.start = this.start;
+    this.activity.end = this.end;
+    // console.log(this.type);
+    // console.log(this.start);
+    // console.log(this.end);
+  }
+
+  onTypeChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.type = target.value;
+
+    this.updateDate();
+  }
+
+  onStartChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    const dummyDate = new Date();
+    const [hours, minutes] = target.value.split(':');
+    dummyDate.setHours(Number(hours));
+    dummyDate.setMinutes(Number(minutes));
+    this.start = dummyDate;
+
+    this.updateDate();
+  }
+
+  onEndChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    const dummyDate = new Date();
+    const [hours, minutes] = target.value.split(':');
+    dummyDate.setHours(Number(hours));
+    dummyDate.setMinutes(Number(minutes));
+    this.end = dummyDate;
+
+    this.updateDate();
+  }
+
+  updateDate() {
     this.activity.type = this.type;
     this.activity.start = this.start;
     this.activity.end = this.end;
 
-    this.schedulerService.updateActivity(this.index, this.label === 'Dimineata' ? 0 : 1, this.activity);
+    this.schedulerService.updateActivity(
+      this.index,
+      this.label === 'Dimineata' ? 0 : 1,
+      this.activity
+    );
   }
-
 }
-

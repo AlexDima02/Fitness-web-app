@@ -5,6 +5,7 @@ import { DayComponent } from './day-component/day.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivityComponent } from './activity-component/activity.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,8 +13,9 @@ import { ActivityComponent } from './activity-component/activity.component';
   declarations: [FooterComponent, DayComponent, ActivityComponent],
   imports: [
     CommonModule,
-    MatCardModule, 
-    MatButtonModule, 
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   exports: [
     FooterComponent,

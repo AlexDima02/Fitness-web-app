@@ -14,7 +14,7 @@ export class FooterComponent {
 
   onClick(value: string) {
     let currentTab = this.arr.indexOf(value);
-    console.log(currentTab);
+    // console.log(currentTab);
     this.changeDays.emit(currentTab);
   }
 }

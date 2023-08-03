@@ -20,7 +20,7 @@ export class TabComponent {
     this.currentDay = this.arr[value];
     this.previousDay = this.arr[value-1];
     this.nextDay = this.arr[value+1];
-    console.log('Value:', value);
+    // console.log('Value:', value);
     this.previousDay = this.arr[value - 1];
     this.nextDay = this.arr[value + 1];
 
