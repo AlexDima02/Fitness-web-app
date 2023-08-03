@@ -3,7 +3,6 @@ import { DaySchedule } from '../interfaces/day-schedule.model';
 import { ActivityModel } from '../interfaces/activity-model';
 import { Subject } from 'rxjs';
 import { ActivityCalories } from '../interfaces/activity-calories.model';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +20,6 @@ export class SchedulerService {
 
   private dailySchedule: DaySchedule[] = [];
   schedule = new Subject<DaySchedule[]>();
-  subscription: Subscription = new Subscription();
 
   constructor() {
     if (!this.fetchFromLocalStorage()) {
