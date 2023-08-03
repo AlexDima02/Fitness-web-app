@@ -260,35 +260,35 @@ export class SchedulerService {
     return dailyCalories;
   }
 
-  setDailyScheduleTest() {
-    for (let index = 0; index < 5; index++) {
-      const start = new Date(0);
-      start.setHours(9, 45);
-      // console.log(start);
+  // setDailyScheduleTest() {
+  //   for (let index = 0; index < 5; index++) {
+  //     const start = new Date(0);
+  //     start.setHours(9, 45);
+  //     // console.log(start);
 
-      const end = new Date(0);
-      end.setHours(10, 30);
-      // console.log(end);
+  //     const end = new Date(0);
+  //     end.setHours(10, 30);
+  //     // console.log(end);
 
-      const start2 = new Date(0);
-      start2.setHours(18, 15);
-      // console.log(start2);
+  //     const start2 = new Date(0);
+  //     start2.setHours(18, 15);
+  //     // console.log(start2);
 
-      const end2 = new Date(0);
-      end2.setHours(19, 0);
-      // console.log(end2);
+  //     const end2 = new Date(0);
+  //     end2.setHours(19, 0);
+  //     // console.log(end2);
 
-      this.setDaySchedule(
-        new DaySchedule(
-          new ActivityModel(start, end, 'Fotbal'),
-          new ActivityModel(start2, end2, 'Inot')
-        ),
-        index
-      );
-    }
-    this.schedule.next(this.dailySchedule);
-    console.log(this.dailySchedule);
-  }
+  //     this.setDaySchedule(
+  //       new DaySchedule(
+  //         new ActivityModel(start, end, 'Fotbal'),
+  //         new ActivityModel(start2, end2, 'Inot')
+  //       ),
+  //       index
+  //     );
+  //   }
+  //   this.schedule.next(this.dailySchedule);
+  //   console.log(this.dailySchedule);
+  // }
 
   getTotals() {
     const totalsPerActivity = this.calculateActivityCalories();
