@@ -35,7 +35,6 @@ export class DashComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver, private schedulerService: SchedulerService) {}
 
   ngOnInit() {
-    this.schedulerService.setDailyScheduleTest();
     this.caloriiPerOra = this.schedulerService.calculateCaloriesPerHour();
     this.activitati = this.schedulerService.calculateActivityCalories();
     this.caloriiPerZi = this.schedulerService.calculateCaloriesPerDay();

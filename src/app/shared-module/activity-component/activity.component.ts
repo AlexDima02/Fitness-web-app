@@ -46,6 +46,10 @@ export class ActivityComponent implements OnInit {
     this.activity.type = this.type;
     this.activity.start = this.start;
     this.activity.end = this.end;
+    console.log(this.type);
+    console.log(this.start);
+    console.log(this.end);
+
 
     this.schedulerService.updateActivity(this.index, this.label === 'Dimineata' ? 0 : 1, this.activity);
   }

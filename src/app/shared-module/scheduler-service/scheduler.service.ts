@@ -64,7 +64,7 @@ export class SchedulerService {
     } else {
       this.dailySchedule[dayIndex].eveningActivity = data;
     }
-
+    
     this.schedule.next(this.dailySchedule);
     this.saveToLocalStorage();
   }
