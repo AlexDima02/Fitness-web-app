@@ -265,5 +265,20 @@ export class SchedulerService {
     }
     this.schedule.next(this.dailySchedule);
     console.log(this.dailySchedule);
+<<<<<<< Updated upstream
+=======
+  }
+
+  getTotals() {
+    const totalsPerActivity = this.calculateActivityCalories();
+    const totals: { time: number; calories: number } = { time: 0, calories: 0 };
+
+    totalsPerActivity.forEach((activity) => {
+      totals.time += activity.time;
+      totals.calories += activity.calories;
+    });
+
+    return totals;
+>>>>>>> Stashed changes
   }
 }
