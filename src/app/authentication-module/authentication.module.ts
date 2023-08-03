@@ -5,13 +5,13 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { SuccesPageComponent } from './succes-page/succes-page.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 
 @NgModule({
   declarations: [
     LoginComponentComponent,
-    SuccesPageComponent
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,7 @@ import { SuccesPageComponent } from './succes-page/succes-page.component';
   ],
   exports: [
     LoginComponentComponent,
-    SuccesPageComponent
+    ErrorMessageComponent
   ]
 })
 export class AuthenticationModule { }
