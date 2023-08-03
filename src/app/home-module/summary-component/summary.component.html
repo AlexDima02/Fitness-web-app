@@ -1,14 +1,33 @@
 
 <mat-card class="center-card">
-    <mat-card-content class="center-card-content">Luni</mat-card-content>
-    <mat-card-content class="center-card-content">-</mat-card-content>
-    <mat-card-content class="center-card-content">Marti</mat-card-content>
-    <mat-card-content class="center-card-content">-</mat-card-content>
-    <mat-card-content class="center-card-content">Miercuri</mat-card-content>
-    <mat-card-content class="center-card-content">-</mat-card-content>
-    <mat-card-content class="center-card-content">Joi</mat-card-content>
-    <mat-card-content class="center-card-content">-</mat-card-content>
-    <mat-card-content class="center-card-content">Vineri</mat-card-content>
+    <ng-container *ngFor="let day of summaryDays; let i = index">
+      <mat-card-content class="center-card-content">{{days[i]}}</mat-card-content>
+        <div *ngIf="day.morningActivity.type !== ''">
+            <ng-container *ngFor="let item of objectKeys(day)">
+              <div *ngIf="item == 'morningActivity'">
+                {{item}}
+              </div>
+            </ng-container>
+            <div>{{day.morningActivity.start }}</div>
+            <div>{{day.morningActivity.end }}</div>
+            <div>{{day.morningActivity.type }}</div>
+        </div>
+        <div *ngIf="day.eveningActivity.type !== ''">
+          <ng-container *ngFor="let item of objectKeys(day)">
+            <div *ngIf="item == 'eveningActivity'">
+              {{item}}
+            </div>
+          </ng-container>
+          <div>{{day.eveningActivity.start }}</div>
+          <div>{{day.eveningActivity.end }}</div>
+          <div>{{day.eveningActivity.type }}</div>
+        </div>
+      <mat-card-content class="center-card-content">{{day.morningEvening}}</mat-card-content>
+      <mat-card-content class="center-card-content">{{day.morningEvening}}</mat-card-content>
+      <mat-card-content class="center-card-content">{{day.morningEvening}}</mat-card-content>
+      <mat-card-content class="center-card-content"></mat-card-content>
+    </ng-container>
+    
   <div class="container">
     <hr class="horizontal-line">
   </div>
