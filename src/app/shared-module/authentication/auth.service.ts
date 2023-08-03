@@ -8,7 +8,7 @@ import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router) {}
   loading = new Subject<boolean>();
   userDoesNotExist = new Subject<boolean>();
   userOrPasswordIncorect = new Subject<boolean>();
@@ -89,8 +89,7 @@ export class AuthService {
   //   })
   // }
 
-  // Validate responses from the functions above and return a boolean value
-  validForm(areCredentialsInvalid:boolean, notExistentUser: boolean): void{
+  validForm(areCredentialsInvalid:boolean, notExistentUser: boolean, activeUser:string): void{
     
       
       this.loading.next(false);
@@ -101,6 +100,9 @@ export class AuthService {
         if(!areCredentialsInvalid && !notExistentUser){
           
           this.loading.next(true);
+          const getUser = JSON.parse(localStorage.getItem('users')!);
+          let checkedUser = getUser.find((user:any) => user.name == activeUser);
+          localStorage.setItem('loggedUser', JSON.stringify(checkedUser));
           this.route.navigate(['scheduler']);
   
         }
@@ -121,6 +123,11 @@ export class AuthService {
         
       }, 2000);
 
+  }
+
+  getCurrentUser(){
+    const user = JSON.parse(localStorage.getItem('loggedUser')!);
+    return user;
   }
   
 }

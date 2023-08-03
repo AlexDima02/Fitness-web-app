@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared-module/authentication/auth.service';
 import { IncorectCredentials } from '../validators/incorect-credentials';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ExistUser } from '../validators/exist-user';
 
 @Component({
@@ -38,6 +38,11 @@ export class LoginComponentComponent implements OnInit{
         this.emailOrPasswordError = res;
         console.log(this.emailOrPasswordError)
       })
+      this.route.events.subscribe((event) => {
+        if(event instanceof NavigationEnd){
+          this.onRouteDelete(event.url)
+        }
+      })
   }
   
 
@@ -46,7 +51,7 @@ export class LoginComponentComponent implements OnInit{
     if(this.loginForm.controls.user.valid && this.loginForm.controls.password.valid){
       
         this.notCompleted = false;     
-        this.auth.validForm(this.loginForm.hasError('emailOrPasswordError'), this.loginForm.hasError('userNotExistent'));
+        this.auth.validForm(this.loginForm.hasError('emailOrPasswordError'), this.loginForm.hasError('userNotExistent'), this.loginForm.controls.user.value!);
 
     }else{
 
@@ -56,6 +61,13 @@ export class LoginComponentComponent implements OnInit{
     
   }
   
+  onRouteDelete(url: string): void{
+    if (url === '/login' && JSON.parse(localStorage.getItem('loggedUser')!)) {
+      localStorage.removeItem('loggedUser');
+      console.log('User deleted!');
+    }
+  }
+
   ngOnInit(): void {
     
   }
