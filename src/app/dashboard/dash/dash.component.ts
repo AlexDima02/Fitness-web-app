@@ -7,10 +7,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
-  styleUrls: ['./dash.component.css']
+  styleUrls: ['./dash.component.css'],
 })
 export class DashComponent implements OnInit, OnDestroy {
-
   subscription: Subscription = new Subscription();
   caloriiPerOra: number[] = [];
   activitati: any[] = [];
@@ -34,18 +33,23 @@ export class DashComponent implements OnInit, OnDestroy {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private schedulerService: SchedulerService) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private schedulerService: SchedulerService
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.schedulerService.schedule.subscribe(dailySchedule => {
-
-      this.caloriiPerOra = this.schedulerService.calculateCaloriesPerHour();
-      this.activitati = this.schedulerService.calculateActivityCalories();
-      this.caloriiPerZi = this.schedulerService.calculateCaloriesPerDay();
-      console.log(this.caloriiPerOra);
-      console.log(this.activitati);
-      console.log(this.caloriiPerZi);
-    })
+    this.subscription = this.schedulerService.schedule.subscribe(
+      (dailySchedule) => {
+        this.caloriiPerOra = this.schedulerService.calculateCaloriesPerHour();
+        this.activitati = this.schedulerService.calculateActivityCalories();
+        this.caloriiPerZi = this.schedulerService.calculateCaloriesPerDay();
+        console.log(this.caloriiPerOra);
+        console.log(this.activitati);
+        console.log(this.caloriiPerZi);
+        console.log('');
+      }
+    );
   }
 
   ngOnDestroy(): void {

@@ -36,16 +36,6 @@ export class SchedulerService {
     return this.dailySchedule[index];
   }
 
-  updateActivityByIndex(index: number, type: string, activity: string): void {
-    const daySchedule = this.getScheduleByIndex(index);
-    if (type === 'morning') {
-      daySchedule.morningActivity.type = activity;
-    } else {
-      daySchedule.eveningActivity.type = activity;
-    }
-    this.saveToLocalStorage();
-  }
-
   getFullSchedule() {
     return this.dailySchedule;
   }
@@ -64,14 +54,14 @@ export class SchedulerService {
     } else {
       this.dailySchedule[dayIndex].eveningActivity = data;
     }
-    
+
     this.schedule.next(this.dailySchedule);
     this.saveToLocalStorage();
   }
 
   saveToLocalStorage() {
     localStorage.setItem('dailySchedule', JSON.stringify(this.dailySchedule));
-    console.log(JSON.stringify(this.dailySchedule));
+    // console.log(JSON.stringify(this.dailySchedule));
   }
 
   fetchFromLocalStorage() {
@@ -79,7 +69,7 @@ export class SchedulerService {
     if (fetchedData) {
       this.dailySchedule = JSON.parse(fetchedData) as DaySchedule[];
       this.schedule.next(this.dailySchedule);
-      console.log(this.dailySchedule);
+      // console.log(this.dailySchedule);
       return true;
     }
     return false;
@@ -120,28 +110,26 @@ export class SchedulerService {
           (item) => item.type === activity.type
         );
 
-        if (!activityData) {
-          throw new Error('Calories per minute not found for activity');
-        }
+        if (activityData) {
+          const caloriesPerMinute = activityData.caloriesPerMinute;
+          const activityStart = new Date(activity.start);
+          const activityEnd = new Date(activity.end);
+          const startHour = activityStart.getHours();
+          const endHour = activityEnd.getHours();
 
-        const caloriesPerMinute = activityData.caloriesPerMinute;
-        const activityStart = new Date(activity.start);
-        const activityEnd = new Date(activity.end);
-        const startHour = activityStart.getHours();
-        const endHour = activityEnd.getHours();
+          // Calculate calories spent per hour
+          for (let hour = startHour; hour <= endHour; hour++) {
+            let minutesInThisHour = this.calculateActivityMinutesPerHour(
+              hour,
+              startHour,
+              endHour,
+              activityStart,
+              activityEnd
+            );
 
-        // Calculate calories spent per hour
-        for (let hour = startHour; hour <= endHour; hour++) {
-          let minutesInThisHour = this.calculateActivityMinutesPerHour(
-            hour,
-            startHour,
-            endHour,
-            activityStart,
-            activityEnd
-          );
-
-          const caloriesInThisHour = minutesInThisHour * caloriesPerMinute;
-          caloriesPerHour[hour] += caloriesInThisHour;
+            const caloriesInThisHour = minutesInThisHour * caloriesPerMinute;
+            caloriesPerHour[hour] += caloriesInThisHour;
+          }
         }
       }
     });
