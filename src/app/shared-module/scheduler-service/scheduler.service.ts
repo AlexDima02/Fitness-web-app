@@ -60,23 +60,15 @@ export class SchedulerService {
     // this.fetchFromLocalStorage();
   }
 
-  updateActivity(
-    dayIndex: number,
-    dayPeriod: number,
-    data: { type: string; start: Date; end: Date }
-  ) {
+  updateActivity(dayIndex: number, dayPeriod: number, data: ActivityModel) {
     if (dayPeriod === 0) {
-      this.dailySchedule[dayIndex].morningActivity.type = data.type;
-      this.dailySchedule[dayIndex].morningActivity.start = data.start;
-      this.dailySchedule[dayIndex].morningActivity.end = data.end;
-    }
-    else{
-      this.dailySchedule[dayIndex].eveningActivity.type = data.type;
-      this.dailySchedule[dayIndex].eveningActivity.start = data.start;
-      this.dailySchedule[dayIndex].eveningActivity.end = data.end;
+      this.dailySchedule[dayIndex].morningActivity = data;
+    } else {
+      this.dailySchedule[dayIndex].eveningActivity = data;
     }
 
     this.schedule.next(this.dailySchedule);
+    this.saveToLocalStorage();
   }
 
   saveToLocalStorage() {
