@@ -29,7 +29,8 @@
     <hr class="horizontal-line" />
   </div>
   <mat-card-content class="center-card-rezumat"
-    >Total: {{ calculateTotalsHours() }} ore</mat-card-content
+    >Total:
+    {{ calculateTotalsHours() | number : "1.0-0" }} ore</mat-card-content
   >
   <mat-card-content class="center-card-rezumat"
     >KCalorii consumate:{{ calculateTotalCalories() }}</mat-card-content
