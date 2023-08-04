@@ -1,6 +1,9 @@
 import { Component,OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SchedulerService } from 'src/app/shared-module/scheduler-service/scheduler.service';
+import { Component,OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SchedulerService } from 'src/app/shared-module/scheduler-service/scheduler.service';
 
 @Component({
   selector: 'app-summary',
