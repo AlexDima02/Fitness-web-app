@@ -82,7 +82,7 @@ export class SchedulerService {
     activityStart: Date,
     activityEnd: Date
   ) {
-    let minutesInThisHour = 0;
+    let minutesInThisHour = 60;
 
     if (startHour === endHour) {
       minutesInThisHour = activityEnd.getMinutes() - activityStart.getMinutes();
