@@ -6,6 +6,7 @@
       Activitate &nbsp;
 
       <select class="dropdown" (change)="onTypeChange($event)">
+        <option value="" selected disabled hidden>Alege sportul</option>
         <option value="Alergare Usoara">Alergare Usoara</option>
 
         <option value="Karate">Karate</option>
@@ -22,10 +23,20 @@
       </select>
     </mat-card-content>
 
-    <mat-card-content class="center-card-content">De la &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input
-        type="time" name="time" class="time" (change)="onStartChange($event)" /></mat-card-content>
+    <mat-card-content class="center-card-content"
+      >De la &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input
+        type="time"
+        name="time"
+        class="time"
+        (change)="onStartChange($event)"
+    /></mat-card-content>
 
-    <mat-card-content class="center-card-content">Pana la &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input type="time" name="time"
-        class="time" (change)="onEndChange($event)" /></mat-card-content>
+    <mat-card-content class="center-card-content"
+      >Pana la &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input
+        type="time"
+        name="time"
+        class="time"
+        (change)="onEndChange($event)"
+    /></mat-card-content>
   </mat-card>
 </fieldset>
