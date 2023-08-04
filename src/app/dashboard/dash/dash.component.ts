@@ -50,6 +50,9 @@ export class DashComponent implements OnInit, OnDestroy {
         // console.log('');
       }
     );
+    this.caloriiPerOra = this.schedulerService.calculateCaloriesPerHour();
+    this.activitati = this.schedulerService.calculateActivityCalories();
+    this.caloriiPerZi = this.schedulerService.calculateCaloriesPerDay();
   }
 
   ngOnDestroy(): void {
